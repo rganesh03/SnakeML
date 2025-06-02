@@ -1,0 +1,1 @@
+This repository follows a tutorial on machine learning to create an algorithm that learns to play snake. You can follow this tutorial [here](https://youtu.be/L8ypSXwyBds?si=wQOkjZvsDJNY38Re)
