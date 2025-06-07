@@ -38,19 +38,19 @@ class SnakeGameAI:
         self.reset()
         
                
-        def reset(self):
-            # init game state
-            self.direction = Direction.RIGHT
-            
-            self.head = Point(self.w/2, self.h/2)
-            self.snake = [self.head, 
-                        Point(self.head.x-BLOCK_SIZE, self.head.y),
-                        Point(self.head.x-(2*BLOCK_SIZE), self.head.y)]
-            
-            self.score = 0
-            self.food = None
-            self._place_food()
-            self.frame_iteration = 0
+    def reset(self):
+        # init game state
+        self.direction = Direction.RIGHT
+        
+        self.head = Point(self.w/2, self.h/2)
+        self.snake = [self.head, 
+                    Point(self.head.x-BLOCK_SIZE, self.head.y),
+                    Point(self.head.x-(2*BLOCK_SIZE), self.head.y)]
+        
+        self.score = 0
+        self.food = None
+        self._place_food()
+        self.frame_iteration = 0
 
         
     def _place_food(self):
@@ -75,7 +75,7 @@ class SnakeGameAI:
         # 3. check if game over
         reward = 0
         game_over = False
-        if self._is_collision() or self.frame_iteration > len(self.snake)*100:
+        if self.is_collision() or self.frame_iteration > len(self.snake)*100:
             game_over = True
             reward = -10
             return reward, game_over, self.score
@@ -94,7 +94,7 @@ class SnakeGameAI:
         # 6. return game over and score
         return reward, game_over, self.score
     
-    def _is_collision(self, pt=None):
+    def is_collision(self, pt=None):
         if pt is None:
             pt = self.head
         # hits boundary
